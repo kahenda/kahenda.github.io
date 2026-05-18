@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philip Damwanza Ahenda — Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f0e8;
+    --cream: #ede8dc;
+    --accent: #e8552a;
+    --accent2: #2a7ae8;
+    --muted: #8a8478;
+    --border: rgba(245,240,232,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    background: rgba(10,10,10,0.7);
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  nav ul a {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: 50%;
+    left: -2rem;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(120px, 20vw, 280px);
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(245,240,232,0.04);
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 10vw, 130px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero h1 .line2 {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--white);
+  }
+
+  .hero-desc {
+    max-width: 520px;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-desc strong { color: var(--white); font-weight: 500; }
+
+  .hero-cta {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: var(--white);
+    padding: 14px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); background: #d44420; }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    padding: 14px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--white); border-color: var(--white); }
+
+  .hero-scroll {
+    position: absolute;
+    right: 4rem;
+    bottom: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1s forwards;
+  }
+
+  .hero-scroll span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollLine 2s ease infinite;
+  }
+
+  @keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* SECTIONS */
+  section { padding: 8rem 4rem; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* STORY */
+  .story { border-top: 1px solid var(--border); }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .story h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.95;
+    margin-bottom: 2rem;
+  }
+
+  .story h2 em {
+    font-style: normal;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--white);
+  }
+
+  .story-text p {
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    font-size: 16px;
+  }
+
+  .story-text p strong { color: var(--white); font-weight: 500; }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .timeline-item:last-child { border-bottom: none; }
+
+  .timeline-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    padding-top: 4px;
+  }
+
+  .timeline-content h4 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    color: var(--white);
+  }
+
+  .timeline-content p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* SKILLS */
+  .skills { border-top: 1px solid var(--border); background: rgba(255,255,255,0.01); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+
+  .skill-card {
+    background: var(--black);
+    padding: 2.5rem 2rem;
+    transition: background 0.2s;
+  }
+
+  .skill-card:hover { background: rgba(232,85,42,0.05); }
+
+  .skill-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 24px;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .skill-card h4 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* PROJECT */
+  .project { border-top: 1px solid var(--border); }
+
+  .project-card {
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .project-card:hover { border-color: rgba(232,85,42,0.4); }
+
+  .project-info { padding: 4rem; }
+
+  .project-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+  }
+
+  .project-info h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .project-info h3 span { color: var(--accent); }
+
+  .project-info p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2.5rem;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--accent2);
+    border: 1px solid rgba(42,122,232,0.3);
+    padding: 4px 10px;
+  }
+
+  .project-visual {
+    background: rgba(255,255,255,0.02);
+    border-left: 1px solid var(--border);
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .api-route {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .api-route:hover {
+    border-color: rgba(232,85,42,0.3);
+    background: rgba(232,85,42,0.03);
+  }
+
+  .method {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    padding: 3px 7px;
+    font-weight: 500;
+  }
+
+  .method.post { background: rgba(232,85,42,0.15); color: var(--accent); }
+  .method.get { background: rgba(42,122,232,0.15); color: var(--accent2); }
+
+  .route-path { color: var(--muted); font-size: 12px; }
+
+  /* ARTICLE */
+  .article { border-top: 1px solid var(--border); }
+
+  .article-card {
+    border: 1px solid var(--border);
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+    transition: border-color 0.3s;
+  }
+
+  .article-card:hover { border-color: rgba(232,85,42,0.4); }
+
+  .article-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .article-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    max-width: 600px;
+  }
+
+  .article-card p {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 500px;
+  }
+
+  .article-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .article-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .article-link:hover { color: var(--white); border-color: var(--white); }
+
+  /* CONTACT */
+  .contact {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 8rem 4rem;
+  }
+
+  .contact h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 10vw, 120px);
+    line-height: 0.9;
+    margin-bottom: 2rem;
+  }
+
+  .contact h2 span {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--white);
+  }
+
+  .contact p {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 400px;
+    margin: 0 auto 3rem;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 14px 24px;
+    border: 1px solid var(--border);
+    transition: color 0.2s, border-color 0.2s, transform 0.2s;
+  }
+
+  .social-link:hover {
+    color: var(--white);
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  footer span { color: var(--accent); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    nav ul { display: none; }
+    .hero { padding: 0 1.5rem 4rem; }
+    section { padding: 5rem 1.5rem; }
+    .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-visual { border-left: none; border-top: 1px solid var(--border); }
+    .article-card { grid-template-columns: 1fr; gap: 2rem; }
+    .article-links { flex-direction: row; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .hero-scroll { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">PDA<span>.</span>dev</div>
+  <ul>
+    <li><a href="#story">Story</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#project">Project</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">PHILIP</div>
+  <div class="hero-tag">Zone 01 Kisumu · Apprentice Developer</div>
+  <h1>
+    Philip<br>
+    <span class="line2">Damwanza</span><br>
+    Ahenda
+  </h1>
+  <p class="hero-desc">
+    From <strong>not knowing much about code</strong> to building real APIs from scratch.
+    A self-driven developer from <strong>Kisumu, Kenya</strong> — learning in public, one project at a time.
+  </p>
+  <div class="hero-cta">
+    <a href="#project" class="btn-primary">See my work →</a>
+    <a href="#story" class="btn-ghost">Read my story</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="section-label">01 — My Story</div>
+  <div class="story-grid">
+    <div>
+      <h2>The <em>Honest</em><br>Journey</h2>
+      <div class="story-text">
+        <p>I didn't grow up dreaming of being a developer. I didn't even know much about coding until a <strong>family member introduced me to Zone 01 Kisumu</strong> — a peer-to-peer learning school with no teachers, no lectures, just problem solving.</p>
+        <p>They had me play a <strong>cognitive game</strong>. I passed. That opened the door to a one-month intensive called <strong>Piscine</strong> — one of the hardest selection processes you'll ever face. Long hours, tough challenges, no hand-holding.</p>
+        <p>I passed that too. And now I'm one of the <strong>apprentices at Zone 01 Kisumu</strong>, doing my one-year module as a developer — building real things, pushing through real struggles.</p>
+        <p>My laptop broke mid-project. I lost code I hadn't pushed to GitHub. I started over. <strong>That's the job.</strong></p>
+      </div>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-year">Step 1</div>
+        <div class="timeline-content">
+          <h4>Discovered Zone 01 Kisumu</h4>
+          <p>Introduced through a family member. Played the cognitive selection game and passed.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Step 2</div>
+        <div class="timeline-content">
+          <h4>Survived the Piscine</h4>
+          <p>One month of intensive coding challenges. No teachers. Just peers, problems and persistence.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Step 3</div>
+        <div class="timeline-content">
+          <h4>Selected as Apprentice</h4>
+          <p>Made the cut. Now doing my one-year developer module at Zone 01 Kisumu.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Now</div>
+        <div class="timeline-content">
+          <h4>Building in public</h4>
+          <p>Writing about my progress, pushing code to GitHub, and building real projects from scratch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="section-label">02 — What I Work With</div>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="skill-icon">Go</div>
+      <h4>Go (Golang)</h4>
+      <p>Building REST APIs with clean architecture — handlers, services, repositories.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">SQL</div>
+      <h4>PostgreSQL</h4>
+      <p>Writing raw SQL queries, designing tables, running migrations on Neon.tech.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔐</div>
+      <h4>Auth & JWT</h4>
+      <p>Secure user registration, bcrypt password hashing, JWT token authentication.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">Git</div>
+      <h4>Git & GitHub</h4>
+      <p>Version control, pushing projects publicly, writing about the process.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">gin</div>
+      <h4>Gin Framework</h4>
+      <p>HTTP routing, middleware, request binding and JSON responses.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">CLI</div>
+      <h4>Linux & Terminal</h4>
+      <p>Comfortable working in the command line, bash scripting, file management.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section class="project" id="project">
+  <div class="section-label">03 — Featured Project</div>
+  <div class="project-card reveal">
+    <div class="project-info">
+      <div class="project-number">Project 001</div>
+      <h3>Kisumu<br><span>Market</span>place</h3>
+      <p>A full REST API for a secondhand clothes marketplace serving Kisumu, Kenya. Built from scratch in Go with JWT auth, PostgreSQL, and a clean 3-layer architecture.</p>
+      <div class="project-tags">
+        <span class="tag">Go</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">JWT Auth</span>
+        <span class="tag">Gin</span>
+        <span class="tag">Neon.tech</span>
+        <span class="tag">REST API</span>
+      </div>
+      <a href="https://github.com/kahenda/market-place" target="_blank" class="btn-primary">View on GitHub →</a>
+    </div>
+    <div class="project-visual">
+      <div class="api-route"><span class="method post">POST</span><span class="route-path">/register</span></div>
+      <div class="api-route"><span class="method post">POST</span><span class="route-path">/login</span></div>
+      <div class="api-route"><span class="method post">POST</span><span class="route-path">/listings</span></div>
+      <div class="api-route"><span class="method get">GET</span><span class="route-path">/listings?area=CBD&size=M</span></div>
+      <div class="api-route"><span class="method post">POST</span><span class="route-path">/messages</span></div>
+      <div class="api-route"><span class="method get">GET</span><span class="route-path">/messages/inbox</span></div>
+      <div class="api-route"><span class="method post">POST</span><span class="route-path">/reviews</span></div>
+      <div class="api-route"><span class="method get">GET</span><span class="route-path">/reviews/:seller_id</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<section class="article" id="writing">
+  <div class="section-label">04 — Writing</div>
+  <div class="article-card reveal">
+    <div>
+      <div class="article-meta">Dev.to · LinkedIn · Technical Writing</div>
+      <h3>How I Managed to Push My Work to My Public GitHub Profile From My Gitea Profile</h3>
+      <p>A practical write-up documenting a real problem I faced and solved during my apprenticeship — pushing projects from a private Gitea instance to a public GitHub profile.</p>
+    </div>
+    <div class="article-links">
+      <a href="https://dev.to/kahenda/how-i-managed-to-push-my-work-to-my-public-github-profile-from-my-gitea-profile-2784" target="_blank" class="article-link">↗ Read on Dev.to</a>
+      <a href="https://www.linkedin.com/pulse/how-i-managed-push-my-work-public-github-profile-from-philip-damwanza-ftdff" target="_blank" class="article-link">↗ Read on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label" style="justify-content:center;">05 — Get In Touch</div>
+  <h2>Let's<br><span>Connect</span></h2>
+  <p>I'm always open to connecting with other developers, collaborators or anyone curious about my journey.</p>
+  <div class="social-links">
+    <a href="https://github.com/kahenda" target="_blank" class="social-link">⌥ GitHub</a>
+    <a href="https://dev.to/kahenda" target="_blank" class="social-link">✍ Dev.to</a>
+    <a href="https://www.linkedin.com/pulse/how-i-managed-push-my-work-public-github-profile-from-philip-damwanza-ftdff" target="_blank" class="social-link">in LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <span>Philip Damwanza Ahenda</span></p>
+  <p>Built with HTML · Zone 01 <span>Kisumu</span></p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
