@@ -654,6 +654,89 @@
 .terminal-hint { opacity: 0.4; font-size: 0.78rem; margin-top: 0.6rem; }
 .terminal-body::-webkit-scrollbar { width: 6px; }
 .terminal-body::-webkit-scrollbar-thumb { background: rgba(232,85,42,0.4); border-radius: 3px; }
+.article-list {
+  max-height: 480px;
+  overflow-y: auto;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+}
+.article-list-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-left: 3px solid transparent;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: articleFadeIn 0.5s ease forwards;
+  transition: background 0.25s ease, border-left-color 0.25s ease, transform 0.2s ease, padding-left 0.2s ease;
+}
+.article-list-item:last-child { border-bottom: none; }
+.article-list-item:nth-child(1)  { animation-delay: 0.02s; }
+.article-list-item:nth-child(2)  { animation-delay: 0.06s; }
+.article-list-item:nth-child(3)  { animation-delay: 0.10s; }
+.article-list-item:nth-child(4)  { animation-delay: 0.14s; }
+.article-list-item:nth-child(5)  { animation-delay: 0.18s; }
+.article-list-item:nth-child(6)  { animation-delay: 0.22s; }
+.article-list-item:nth-child(7)  { animation-delay: 0.26s; }
+.article-list-item:nth-child(8)  { animation-delay: 0.30s; }
+.article-list-item:nth-child(9)  { animation-delay: 0.34s; }
+.article-list-item:nth-child(10) { animation-delay: 0.38s; }
+.article-list-item:nth-child(11) { animation-delay: 0.42s; }
+.article-list-item:nth-child(12) { animation-delay: 0.46s; }
+.article-list-item:nth-child(13) { animation-delay: 0.50s; }
+.article-list-item:nth-child(14) { animation-delay: 0.54s; }
+
+@keyframes articleFadeIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.article-list-item:nth-child(6n+1) { border-left-color: #e8552a; }
+.article-list-item:nth-child(6n+2) { border-left-color: #2ac9a0; }
+.article-list-item:nth-child(6n+3) { border-left-color: #4d8dff; }
+.article-list-item:nth-child(6n+4) { border-left-color: #d94dff; }
+.article-list-item:nth-child(6n+5) { border-left-color: #ffc93c; }
+.article-list-item:nth-child(6n+0) { border-left-color: #ff5c8a; }
+
+.article-list-item:hover {
+  background: rgba(255,255,255,0.04);
+  padding-left: 1.6rem;
+  transform: translateX(2px);
+}
+
+.article-list-num {
+  flex-shrink: 0;
+  width: 24px;
+  font-size: 0.72rem;
+  font-family: monospace;
+  opacity: 0.35;
+}
+.article-list-date {
+  flex-shrink: 0;
+  width: 65px;
+  font-size: 0.78rem;
+  opacity: 0.5;
+  font-family: monospace;
+}
+.article-list-title {
+  flex: 1;
+  font-size: 0.95rem;
+}
+.article-list-arrow {
+  flex-shrink: 0;
+  opacity: 0.4;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.article-list-item:hover .article-list-arrow {
+  opacity: 1;
+  transform: translateX(3px);
+}
+.article-list::-webkit-scrollbar { width: 6px; }
+.article-list::-webkit-scrollbar-thumb { background: rgba(232,85,42,0.4); border-radius: 3px; }
 </style>
 </head>
 <body>
@@ -831,18 +914,94 @@
 </section>
 
 <!-- ARTICLE -->
+<!-- ARTICLE -->
 <section class="article" id="writing">
   <div class="section-label">04 — Writing</div>
-  <div class="article-card reveal">
-    <div>
-      <div class="article-meta">Dev.to · LinkedIn · Technical Writing</div>
-      <h3>How I Managed to Push My Work to My Public GitHub Profile From My Gitea Profile</h3>
-      <p>A practical write-up documenting a real problem I faced and solved during my apprenticeship — pushing projects from a private Gitea instance to a public GitHub profile.</p>
-    </div>
-    <div class="article-links">
-      <a href="https://dev.to/kahenda/how-i-managed-to-push-my-work-to-my-public-github-profile-from-my-gitea-profile-2784" target="_blank" class="article-link">↗ Read on Dev.to</a>
-      <a href="https://www.linkedin.com/pulse/how-i-managed-push-my-work-public-github-profile-from-philip-damwanza-ftdff" target="_blank" class="article-link">↗ Read on LinkedIn</a>
-    </div>
+  <div class="article-list reveal">
+    <a href="https://dev.to/kahenda/cohort-1-a-few-months-in" target="_blank" class="article-list-item">
+      <span class="article-list-num">01</span>
+      <span class="article-list-date">Jul 8</span>
+      <span class="article-list-title">Cohort 1: A Few Months In</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/piscine-survival-guide-what-id-tell-myself-before-day-1" target="_blank" class="article-list-item">
+      <span class="article-list-num">02</span>
+      <span class="article-list-date">Jul 8</span>
+      <span class="article-list-title">Piscine Survival Guide: What I'd Tell Myself Before Day 1</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
+      <span class="article-list-num">03</span>
+      <span class="article-list-date">Jul 7</span>
+      <span class="article-list-title">5 Bugs That Made Me Question My Life Choices</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
+      <span class="article-list-num">04</span>
+      <span class="article-list-date">Jul 7</span>
+      <span class="article-list-title">The Troubles of Working with a Database at a Hackathon (AidStream Story)</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
+      <span class="article-list-num">05</span>
+      <span class="article-list-date">Jul 6</span>
+      <span class="article-list-title">The Honest Struggles of Building Your First Full Stack App</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
+      <span class="article-list-num">06</span>
+      <span class="article-list-date">Jul 6</span>
+      <span class="article-list-title">How I Built a Secondhand Clothes Marketplace for Kisumu, Kenya</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
+      <span class="article-list-num">07</span>
+      <span class="article-list-date">Jun 18</span>
+      <span class="article-list-title">Lem-in: Shortest Path Isn't Always the Goal</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
+      <span class="article-list-num">08</span>
+      <span class="article-list-date">Jun 15</span>
+      <span class="article-list-title">Building Groupie Tracker in Go</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
+      <span class="article-list-num">09</span>
+      <span class="article-list-date">Jun 15</span>
+      <span class="article-list-title">Lightning Network and Its Integration to Bitcoin</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
+      <span class="article-list-num">10</span>
+      <span class="article-list-date">Jun 15</span>
+      <span class="article-list-title">The Lightning Network: Bitcoin, But Fast</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
+      <span class="article-list-num">11</span>
+      <span class="article-list-date">Jun 4</span>
+      <span class="article-list-title">Why React Components Will Change How You Think About UI</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
+      <span class="article-list-num">12</span>
+      <span class="article-list-date">Jun 4</span>
+      <span class="article-list-title">React Components: The Building Blocks You Need to Know</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
+      <span class="article-list-num">13</span>
+      <span class="article-list-date">Jun 2</span>
+      <span class="article-list-title">Learning How Docker Works</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/how-i-managed-to-push-my-work-to-my-public-github-profile-from-my-gitea-profile-2784" target="_blank" class="article-list-item">
+      <span class="article-list-num">14</span>
+      <span class="article-list-date">May 18</span>
+      <span class="article-list-title">How I Managed to Push My Work to My Public GitHub Profile From My Gitea Profile</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
   </div>
 </section>
 
