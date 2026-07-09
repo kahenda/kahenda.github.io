@@ -14,6 +14,9 @@
     --cream: #ede8dc;
     --accent: #e8552a;
     --accent2: #2a7ae8;
+    --accent3: #2ac9a0;
+    --accent4: #d94dff;
+    --accent5: #ffc93c;
     --muted: #8a8478;
     --border: rgba(245,240,232,0.12);
   }
@@ -244,6 +247,14 @@
     height: 1px;
     background: var(--accent);
   }
+#skills .section-label { color: var(--accent3); }
+#skills .section-label::after { background: var(--accent3); }
+#project .section-label { color: var(--accent2); }
+#project .section-label::after { background: var(--accent2); }
+#writing .section-label { color: var(--accent5); }
+#writing .section-label::after { background: var(--accent5); }
+#contact .section-label { color: var(--accent4); }
+#contact .section-label::after { background: var(--accent4); }
 
   /* STORY */
   .story { border-top: 1px solid var(--border); }
@@ -404,10 +415,14 @@
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.08em;
-    color: var(--accent2);
-    border: 1px solid rgba(42,122,232,0.3);
+    border: 1px solid;
     padding: 4px 10px;
   }
+.project-tags .tag:nth-child(5n+1) { color: var(--accent); border-color: rgba(232,85,42,0.3); }
+.project-tags .tag:nth-child(5n+2) { color: var(--accent2); border-color: rgba(42,122,232,0.3); }
+.project-tags .tag:nth-child(5n+3) { color: var(--accent3); border-color: rgba(42,201,160,0.3); }
+.project-tags .tag:nth-child(5n+4) { color: var(--accent4); border-color: rgba(217,77,255,0.3); }
+.project-tags .tag:nth-child(5n+5) { color: var(--accent5); border-color: rgba(255,201,60,0.3); }
 
   .project-visual {
     background: rgba(255,255,255,0.02);
@@ -612,48 +627,6 @@
     footer { flex-direction: column; gap: 1rem; text-align: center; }
     .hero-scroll { display: none; }
   }
-.terminal-wrap {
-  background: #0d0d0d;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  overflow: hidden;
-  font-family: 'Courier New', monospace;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-}
-.terminal-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.7rem 1rem;
-  background: #161616;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.terminal-dot { width: 11px; height: 11px; border-radius: 50%; }
-.terminal-dot.red { background: #ff5f56; }
-.terminal-dot.yellow { background: #ffbd2e; }
-.terminal-dot.green { background: #27c93f; }
-.terminal-title { margin-left: 0.5rem; font-size: 0.75rem; opacity: 0.5; }
-.terminal-body {
-  padding: 1.2rem 1.4rem;
-  height: 340px;
-  overflow-y: auto;
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: #e8e8e8;
-}
-.terminal-line { margin-bottom: 0.3rem; white-space: pre-wrap; }
-.terminal-prompt-line { display: flex; align-items: center; gap: 0.5rem; }
-.terminal-prompt-symbol { color: #e8552a; flex-shrink: 0; }
-.terminal-input {
-  background: transparent; border: none; outline: none;
-  color: #e8e8e8; font-family: inherit; font-size: inherit;
-  flex: 1; caret-color: #e8552a;
-}
-.terminal-output-link { color: #e8552a; text-decoration: none; }
-.terminal-output-link:hover { text-decoration: underline; }
-.terminal-hint { opacity: 0.4; font-size: 0.78rem; margin-top: 0.6rem; }
-.terminal-body::-webkit-scrollbar { width: 6px; }
-.terminal-body::-webkit-scrollbar-thumb { background: rgba(232,85,42,0.4); border-radius: 3px; }
 .article-list {
   max-height: 480px;
   overflow-y: auto;
@@ -1005,102 +978,6 @@
   </div>
 </section>
 
-<!-- TERMINAL -->
-<section class="terminal-section" id="terminal">
-  <div class="section-label">05 — Try It</div>
-  <h2>Talk to<br><span>My Terminal</span></h2>
-  <p>Type <code>help</code> to see what it can do.</p>
-  <div class="terminal-wrap reveal">
-    <div class="terminal-bar">
-      <span class="terminal-dot red"></span>
-      <span class="terminal-dot yellow"></span>
-      <span class="terminal-dot green"></span>
-      <span class="terminal-title">kahenda@portfolio: ~</span>
-    </div>
-    <div class="terminal-body" id="terminalBody">
-      <div class="terminal-line">Welcome to Philip's terminal. Type <span style="color:#e8552a">help</span> to get started.</div>
-      <div class="terminal-prompt-line">
-        <span class="terminal-prompt-symbol">➜</span>
-        <input type="text" id="terminalInput" class="terminal-input" autocomplete="off" spellcheck="false" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-(function() {
-  const body = document.getElementById('terminalBody');
-  const input = document.getElementById('terminalInput');
-
-  const commands = {
-    help: () => `Available commands:
-  whoami     - who I am
-  skills     - what I work with
-  projects   - things I've built
-  articles   - my writing
-  contact    - how to reach me
-  sudo       - try it
-  clear      - clear the terminal`,
-
-    whoami: () => `Philip Damwanza Ahenda
-Apprentice Developer @ Zone01 Kisumu, Cohort 1
-Based in Kisumu, Kenya — building real projects, not tutorials.`,
-
-    skills: () => `Go · React · PostgreSQL · Tailwind CSS · Docker
-JWT Auth · REST APIs · SQLite · Git`,
-
-    projects: () => `001 — Kisumu Marketplace
-      Full-stack secondhand clothes marketplace. Go, PostgreSQL, React.
-      → github.com/kahenda/market-place
-
-002 — Afya Plus
-      Offline-first tool for Community Health Workers. Go, React, PWA.
-      → github.com/kahenda/afya-plus`,
-
-    articles: () => `14 articles and counting on Dev.to.
-→ dev.to/kahenda`,
-
-    contact: () => `GitHub  → github.com/kahenda
-Dev.to  → dev.to/kahenda
-Scroll down to the contact section, or just email me from there.`,
-
-    sudo: () => `Nice try. Permission denied — but I appreciate the confidence.`,
-  };
-
-  function printLine(text) {
-    const line = document.createElement('div');
-    line.className = 'terminal-line';
-    line.textContent = text;
-    body.insertBefore(line, input.parentElement);
-  }
-
-  function runCommand(raw) {
-    const cmd = raw.trim().toLowerCase();
-    printLine('➜ ' + raw);
-    if (cmd === '') return;
-    if (cmd === 'clear') {
-      body.innerHTML = '';
-      body.appendChild(input.parentElement);
-      return;
-    }
-    if (commands[cmd]) {
-      printLine(commands[cmd]());
-    } else {
-      printLine(`command not found: ${cmd}  (type "help" for a list)`);
-    }
-    body.scrollTop = body.scrollHeight;
-  }
-
-  input.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      runCommand(input.value);
-      input.value = '';
-    }
-  });
-
-  document.querySelector('.terminal-wrap').addEventListener('click', () => input.focus());
-})();
-</script>
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="section-label" style="justify-content:center;">06 — Get In Touch</div>
