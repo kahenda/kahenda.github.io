@@ -244,6 +244,17 @@
     .hero-photo { position: static; width: 170px; margin-bottom: 2rem; box-shadow: 8px 8px 0 var(--accent); }
   }
 
+
+  /* HOBBIES */
+  .hobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; max-width: 800px; }
+  .hobby { border: 1px solid var(--border); border-left: 3px solid var(--accent3); padding: 1.75rem; }
+  .hobby:nth-child(2) { border-left-color: var(--accent5); }
+  .hobby .emoji { font-size: 28px; display: block; margin-bottom: 0.75rem; }
+  .hobby h4 { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .hobby p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  #hobbies .section-label { color: var(--accent3); }
+  #hobbies .section-label::after { background: var(--accent3); }
+
   /* SECTIONS */
   section { padding: 8rem 4rem; }
 
@@ -740,6 +751,7 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#project">Project</a></li>
     <li><a href="#writing">Writing</a></li>
+    <li><a href="#hobbies">Hobbies</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -1062,6 +1074,15 @@
       <span class="article-list-title">How I Managed to Push My Work to My Public GitHub Profile From My Gitea Profile</span>
       <span class="article-list-arrow">↗</span>
     </a>
+  </div>
+</section>
+
+<!-- HOBBIES -->
+<section class="hobbies" id="hobbies">
+  <div class="section-label">05 — Beyond the Code</div>
+  <div class="hobby-grid reveal">
+    <div class="hobby"><span class="emoji">✏️</span><h4>Drawing</h4><p>Sketching keeps my eye for detail sharp and gives my mind a break from the screen. It shapes how I think about layout and design.</p></div>
+    <div class="hobby"><span class="emoji">🥾</span><h4>Hiking</h4><p>Long trails teach patience and pacing, the same habits that got me through the Piscine and long debugging sessions.</p></div>
   </div>
 </section>
 
