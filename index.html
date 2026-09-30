@@ -225,6 +225,25 @@
     100% { transform: scaleY(0); transform-origin: bottom; }
   }
 
+
+  /* HERO PHOTO */
+  .hero-photo {
+    position: absolute;
+    right: 9rem;
+    bottom: 8rem;
+    width: clamp(220px, 24vw, 360px);
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--border);
+    box-shadow: 14px 14px 0 var(--accent);
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.5s forwards;
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @media (max-width: 1000px) {
+    .hero-photo { position: static; width: 170px; margin-bottom: 2rem; box-shadow: 8px 8px 0 var(--accent); }
+  }
+
   /* SECTIONS */
   section { padding: 8rem 4rem; }
 
@@ -728,6 +747,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg-text">PHILIP</div>
+    <div class="hero-photo"><img src="me.jpg" alt="Portrait of Philip Damwanza Ahenda"></div>
   <div class="hero-tag">Zone 01 Kisumu · Apprentice Developer</div>
   <h1>
     Philip<br>
@@ -735,7 +755,7 @@
     Ahenda
   </h1>
   <p class="hero-desc">
-    From <strong>not knowing much about code</strong> to building real APIs and also learnng more about it through my first project.
+    From <strong>not knowing much about code</strong> to building real APIs and also learning more about it through my first project.
     A self-driven developer from <strong>Kisumu, Kenya</strong> — learning in public, one project at a time.
   </p>
   <div class="hero-cta">
@@ -891,86 +911,152 @@
 <section class="article" id="writing">
   <div class="section-label">04 — Writing</div>
   <div class="article-list reveal">
-    <a href="https://dev.to/kahenda/cohort-1-a-few-months-in" target="_blank" class="article-list-item">
+    <a href="https://dev.to/kahenda/calculating-days-in-js-a-beginners-guide-1ii8" target="_blank" rel="noopener" class="article-list-item">
       <span class="article-list-num">01</span>
+      <span class="article-list-date">Aug 13</span>
+      <span class="article-list-title">Calculating Days in JS: A Beginner's Guide</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/building-qrstamp-a-lightning-fast-qr-code-analytics-tracker-in-go-15p6" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">02</span>
+      <span class="article-list-date">Aug 3</span>
+      <span class="article-list-title">Building QrStamp: A Lightning-Fast QR Code &amp; Analytics Tracker in Go</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/building-devspot-kenya-a-lightweight-tech-event-aggregator-in-go-3b47" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">03</span>
+      <span class="article-list-date">Aug 3</span>
+      <span class="article-list-title">Building DevSpot Kenya: A Lightweight Tech Event Aggregator in Go</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/3-simple-go-habits-that-will-save-you-hours-of-debugging-47j3" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">04</span>
+      <span class="article-list-date">Aug 3</span>
+      <span class="article-list-title">3 Simple Go Habits That Will Save You Hours of Debugging</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/the-one-line-bug-that-broke-five-peoples-imports-at-once-35m2" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">05</span>
+      <span class="article-list-date">Jul 28</span>
+      <span class="article-list-title">The One-Line Bug That Broke Five People's Imports at Once</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/how-i-made-sure-you-cant-like-and-dislike-the-same-post-at-once-56io" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">06</span>
+      <span class="article-list-date">Jul 28</span>
+      <span class="article-list-title">How I Made Sure You Can't Like and Dislike the Same Post at Once</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/sqlite-vs-postgresql-two-sql-giants-built-for-different-worlds-5ac2" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">07</span>
+      <span class="article-list-date">Jul 20</span>
+      <span class="article-list-title">SQLite vs. PostgreSQL: Two SQL Giants Built for Different Worlds</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/how-i-fixed-a-git-merge-conflict-without-losing-my-code-558j" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">08</span>
+      <span class="article-list-date">Jul 20</span>
+      <span class="article-list-title">How I Fixed a Git Merge Conflict (Without Losing My Code)</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/why-everyone-says-it-depends-when-you-ask-about-the-best-programming-language-32h6" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">09</span>
+      <span class="article-list-date">Jul 10</span>
+      <span class="article-list-title">Why Everyone Says "It Depends" When You Ask About the Best Programming Language</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/nobody-warns-you-how-much-debugging-is-reading-not-coding-2nm7" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">10</span>
+      <span class="article-list-date">Jul 9</span>
+      <span class="article-list-title">Nobody Warns You How Much Debugging Is Reading, Not Coding</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/im-about-to-deploy-my-go-react-app-for-the-first-time-wish-me-luck-228p" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">11</span>
+      <span class="article-list-date">Jul 9</span>
+      <span class="article-list-title">I'm About to Deploy My Go + React App for the First Time — Wish Me Luck</span>
+      <span class="article-list-arrow">↗</span>
+    </a>
+    <a href="https://dev.to/kahenda/cohort-1-a-few-months-in-3h7a" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">12</span>
       <span class="article-list-date">Jul 8</span>
       <span class="article-list-title">Cohort 1: A Few Months In</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda/piscine-survival-guide-what-id-tell-myself-before-day-1" target="_blank" class="article-list-item">
-      <span class="article-list-num">02</span>
+    <a href="https://dev.to/kahenda/piscine-survival-guide-what-id-tell-myself-before-day-1-pa2" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">13</span>
       <span class="article-list-date">Jul 8</span>
       <span class="article-list-title">Piscine Survival Guide: What I'd Tell Myself Before Day 1</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
-      <span class="article-list-num">03</span>
+    <a href="https://dev.to/kahenda/2-bugs-that-made-me-question-my-life-choices-and-what-they-actually-were-12jc" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">14</span>
       <span class="article-list-date">Jul 7</span>
-      <span class="article-list-title">5 Bugs That Made Me Question My Life Choices</span>
+      <span class="article-list-title">2 Bugs That Made Me Question My Life Choices (And What They Actually Were)</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
-      <span class="article-list-num">04</span>
+    <a href="https://dev.to/kahenda/the-troubles-of-working-with-a-database-at-a-hackathon-aidstream-story-32oj" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">15</span>
       <span class="article-list-date">Jul 7</span>
       <span class="article-list-title">The Troubles of Working with a Database at a Hackathon (AidStream Story)</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
-      <span class="article-list-num">05</span>
+    <a href="https://dev.to/kahenda/the-honest-struggles-of-building-your-first-full-stack-app-17gi" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">16</span>
       <span class="article-list-date">Jul 6</span>
       <span class="article-list-title">The Honest Struggles of Building Your First Full Stack App</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
-      <span class="article-list-num">06</span>
+    <a href="https://dev.to/kahenda/how-i-built-a-secondhand-clothes-marketplace-for-kisumu-kenya-as-a-first-year-developer-17lb" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">17</span>
       <span class="article-list-date">Jul 6</span>
-      <span class="article-list-title">How I Built a Secondhand Clothes Marketplace for Kisumu, Kenya</span>
+      <span class="article-list-title">How I Built a Secondhand Clothes Marketplace for Kisumu, Kenya — As a First-Year Developer</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
-      <span class="article-list-num">07</span>
+    <a href="https://dev.to/kahenda/lem-in-shortest-path-isnt-always-the-goal-570" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">18</span>
       <span class="article-list-date">Jun 18</span>
       <span class="article-list-title">Lem-in: Shortest Path Isn't Always the Goal</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
-      <span class="article-list-num">08</span>
+    <a href="https://dev.to/kahenda/building-groupie-tracker-in-go-39p7" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">19</span>
       <span class="article-list-date">Jun 15</span>
       <span class="article-list-title">Building Groupie Tracker in Go</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
-      <span class="article-list-num">09</span>
+    <a href="https://dev.to/kahenda/lightning-network-and-its-integration-to-bitcoin-4p3p" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">20</span>
       <span class="article-list-date">Jun 15</span>
       <span class="article-list-title">Lightning Network and Its Integration to Bitcoin</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
-      <span class="article-list-num">10</span>
+    <a href="https://dev.to/kahenda/the-lightning-network-bitcoin-but-fast-1nmm" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">21</span>
       <span class="article-list-date">Jun 15</span>
       <span class="article-list-title">The Lightning Network: Bitcoin, But Fast</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
-      <span class="article-list-num">11</span>
+    <a href="https://dev.to/kahenda/why-react-components-will-change-how-you-think-about-ui-1i3b" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">22</span>
       <span class="article-list-date">Jun 4</span>
       <span class="article-list-title">Why React Components Will Change How You Think About UI</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
-      <span class="article-list-num">12</span>
+    <a href="https://dev.to/kahenda/react-components-the-building-blocks-you-need-to-know-215k" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">23</span>
       <span class="article-list-date">Jun 4</span>
       <span class="article-list-title">React Components: The Building Blocks You Need to Know</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda" target="_blank" class="article-list-item">
-      <span class="article-list-num">13</span>
+    <a href="https://dev.to/kahenda/learning-how-docker-works-1o5h" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">24</span>
       <span class="article-list-date">Jun 2</span>
       <span class="article-list-title">Learning How Docker Works</span>
       <span class="article-list-arrow">↗</span>
     </a>
-    <a href="https://dev.to/kahenda/how-i-managed-to-push-my-work-to-my-public-github-profile-from-my-gitea-profile-2784" target="_blank" class="article-list-item">
-      <span class="article-list-num">14</span>
+    <a href="https://dev.to/kahenda/how-i-managed-to-push-my-work-to-my-public-github-profile-from-my-gitea-profile-2784" target="_blank" rel="noopener" class="article-list-item">
+      <span class="article-list-num">25</span>
       <span class="article-list-date">May 18</span>
       <span class="article-list-title">How I Managed to Push My Work to My Public GitHub Profile From My Gitea Profile</span>
       <span class="article-list-arrow">↗</span>
